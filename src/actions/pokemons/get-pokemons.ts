@@ -3,7 +3,10 @@ import type { Pokemon } from "../../domain/entities/pokemon";
 import type { PokeAPIPaginatedResponse, PokeAPIPokemon } from "../../infrastructure/interfaces/pokeapi.interfaces";
 import { PokemonMapper } from "../../infrastructure/mappers/pokemon.mapper";
 
-export const getPokemons = async (page: number, limit: number = 20): Promise<Pokemon[]> => {
+export const getPokemons = async (
+  page: number,
+  limit: number = 20
+): Promise<Pokemon[]> => {
 
   try {
     const url = `/pokemon?offset=${page * 10}&limit=${limit}`;
@@ -15,12 +18,12 @@ export const getPokemons = async (page: number, limit: number = 20): Promise<Pok
     });
 
     const pokeApiPokemons = await Promise.all(pokemonPromises);
-    const pokemons = pokeApiPokemons.map(item =>
+    const pokemonsPromises = pokeApiPokemons.map(item =>
       PokemonMapper.pokeApiPokemonToEntity(item.data),
     );
 
-    console.log(pokemons[0])
-    return [];
+    // console.log(pokemons[0])
+    return await Promise.all(pokemonsPromises);
 
   } catch (error) {
     console.log(error);
