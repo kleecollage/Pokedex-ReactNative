@@ -3,14 +3,20 @@ import { HomeScreen } from '../screens/home/HomeScreen';
 import { PokemonScreen } from '../screens/pokemon/PokemonScreen';
 import { SearchScreen } from '../screens/search/SearchScreen';
 
-const Stack = createStackNavigator();
+export type RootStackParams = {
+  HomeScreen: undefined;
+  PokemonScreen: {pokemonId: number};
+  SearchScreen: undefined;
+}
+
+const Stack = createStackNavigator<RootStackParams>();
 
 export const StackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Pokemon" component={PokemonScreen} />
-      <Stack.Screen name="Search" component={SearchScreen} />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="PokemonScreen" component={PokemonScreen} />
+      <Stack.Screen name="SearchScreen" component={SearchScreen} />
     </Stack.Navigator>
   );
 }
