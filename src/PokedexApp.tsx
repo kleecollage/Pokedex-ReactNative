@@ -4,15 +4,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StackNavigator } from './presentation/navigator/StackNavigator';
 import { PaperProvider } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { ThemeContextProvider } from './presentation/context/ThemeContext';
 
 export const PokedexApp = () => {
   return (
-    <PaperProvider settings={{
-      icon: props => <Ionicons {...props} />,
-    }}>
-      <NavigationContainer>
-        <StackNavigator />
-      </NavigationContainer>
-    </PaperProvider>
+    <ThemeContextProvider>
+      <StackNavigator />
+    </ThemeContextProvider>
   )
 }
