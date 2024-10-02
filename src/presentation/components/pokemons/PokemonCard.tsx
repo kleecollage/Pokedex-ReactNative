@@ -40,7 +40,7 @@ export const PokemonCard = ( { pokemon }: Props) => {
           {pokemon.types[0]}
         </Text>
       </Card>
-    </Pressable> 
+    </Pressable>
   )
 }
 
