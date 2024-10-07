@@ -1,4 +1,4 @@
-package com.pokedex
+package com.kleecollage.pokedex
 
 import android.app.Application
 import com.facebook.react.PackageList
